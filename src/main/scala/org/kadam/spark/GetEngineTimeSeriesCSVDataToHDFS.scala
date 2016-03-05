@@ -109,6 +109,7 @@ object GetEngineTimeSeriesCSVDataToHDFS {
     //Register as a temp table
     engineTimeSeriesDF.registerTempTable("ENGINE_TIME_SERIES")
 
+
     println("CSV WRITE- OFFSET(MAX AND MIN)...")
     sqlContext.sql(
       """
@@ -155,6 +156,17 @@ object GetEngineTimeSeriesCSVDataToHDFS {
         |)
         |ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
       """.stripMargin)
+
+
+    //Create table using databricks csv libraries
+    hiveContext.sql(
+      """
+        |CREATE TABLE ENGINE_TIME_SERIES
+        |USING com.databricks.spark.csv
+        |OPTIONS (path "/user/hive/warehouse/ffd_ts/", header "true")
+      """.stripMargin)
+
+
 
     //Load the data into the table using HIVEQL
     hiveContext.sql(

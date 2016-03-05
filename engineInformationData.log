@@ -1,0 +1,21 @@
+spark-submit --master local[*] --class org.kadam.spark.GetEngineInformationCSVDataJava /Users/gangadharkadam/myapps/FullFlightData/target/scala-2.11/FullFlightData-assembly-1.0.jar file:///Users/gangadharkadam/myapps/FullFlightData/src/main/resources/engineInformation.csv /user/hive/warehouse/ffd_java_data
+
+
+root
+ |-- CUSTOMER_CODE: string (nullable = true)
+ |-- TAIL_NUMBER: string (nullable = true)
+ |-- FLIGHT_RECORD_NUMBER: string (nullable = true)
+ |-- EXPORT_CONFIG_VERSION: string (nullable = true)
+ |-- FLIGHT_NUMBER: string (nullable = true)
+ |-- FLIGHT_DATE_EXACT: string (nullable = true)
+ |-- DECODE_GENERATION_TIME: string (nullable = true)
+ |-- AIRPORT_DEPART: string (nullable = true)
+ |-- AIRPORT_ARRIVAL: string (nullable = true)
+ |-- FILE_TYPE: string (nullable = true)
+
++-------------+-----------+--------------------+---------------------+-------------+-----------------+----------------------+--------------+---------------+---------+
+|CUSTOMER_CODE|TAIL_NUMBER|FLIGHT_RECORD_NUMBER|EXPORT_CONFIG_VERSION|FLIGHT_NUMBER|FLIGHT_DATE_EXACT|DECODE_GENERATION_TIME|AIRPORT_DEPART|AIRPORT_ARRIVAL|FILE_TYPE|
++-------------+-----------+--------------------+---------------------+-------------+-----------------+----------------------+--------------+---------------+---------+
+|          CES|     B-6366|             5499901|                    0|      CES2800|  20150507_163808|       20150508_170244|          ZSAM|           UNKN|      QAR|
+|          AAL|     B-6368|             5499901|                    0|      AAL2800|  20150507_163808|       20150508_170244|          ZSAM|           UNKN|      QAR|
++-------------+-----------+--------------------+---------------------+-------------+-----------------+----------------------+--------------+---------------+---------+

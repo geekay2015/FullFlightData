@@ -156,7 +156,7 @@ object GetEngineInformationCSVDataToHDFS {
 
     //Load the data into the table using HIVEQL
     hiveContext.sql(
-      s"""
+      """
         |LOAD DATA INPATH \"${outputFile}\" INTO table ENGINE_INFORMATION
       """.stripMargin)
 
