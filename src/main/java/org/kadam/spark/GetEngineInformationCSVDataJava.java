@@ -3,7 +3,6 @@ package org.kadam.spark;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
@@ -12,14 +11,12 @@ import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.hive.HiveContext;
 import org.apache.spark.sql.types.*;
 
-import java.sql.Array;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by gangadharkadam on 3/3/16.
- *
  * Project Name: FFD
  */
 
@@ -36,8 +33,8 @@ public class GetEngineInformationCSVDataJava {
         final String inputFile = args[0];
         final String outputFile = args[1];
 
-        //final String inputFile  = "/Users/gangadharkadam/myapps/FullFlightData/src/main/resources/engineInformation.csv";
-        //final String outputFile = "hdfs://localhost:9000/user/hive/warehouse/ffd_java_data";
+        // final String inputFile  = "/Users/gangadharkadam/myapps/FullFlightData/src/main/resources/engineInformation.csv";
+        // final String outputFile = "hdfs://localhost:9000/user/hive/warehouse/ffd_java_data";
 
 
         // Define a configuration to use to interact with Spark
@@ -161,11 +158,8 @@ public class GetEngineInformationCSVDataJava {
             System.out.println();
         }
 
-
         //Stop the context
         sc.stop();
-
     }
-
 }
 
