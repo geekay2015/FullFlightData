@@ -1,3 +1,24 @@
+/**
+ * (c) 2016 GE all rights reserved.
+ * Author: Gangadhar Kadam
+ * Version 1.0:
+ *
+ * Client: GE Aviation
+ *
+ * Input: Full flight Engine Information CSV files
+ *
+ * Processing desired:
+ * Read the csv file into spark, write the files as CSV on hdfs and Load them as HIVE & HAWQ tables.
+ *
+ * Framework:
+ * 1. Read the CSV file as textFile
+ * 2. Split the lines delimited by semicolon
+ * 3. Map the splits to SparkSQL Row
+ * 4. Define a schema using spark SQL Struct Type
+ * 5. Save the CSV to HDFS in CSV format
+ * 6. Create a Spark DataFrame using Spark SQL Context
+ */
+
 package org.kadam.spark;
 
 import org.apache.spark.SparkConf;
@@ -45,11 +66,11 @@ public class GetEngineInformationCSVDataJava {
         // Create a Java version of the Spark Context from the configuration
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        // sc is an existing JavaSparkContext.
+        // Define a SQL Context
         SQLContext sqlContext = new SQLContext(sc);
 
 
-        // Load a text file and convert each line to a JavaBean
+        // Load a CSV file and convert each line to a JavaBean
         JavaRDD<String> engineRDD = sc.textFile(inputFile);
         for (String s : engineRDD.collect()) {
              System.out.println();

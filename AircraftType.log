@@ -1,0 +1,88 @@
+spark-submit --master local[*] --class org.kadam.spark.GetAircraftTypeDataJava /Users/gangadharkadam/myapps/FullFlightData/target/scala-2.11/FullFlightData-assembly-1.0.jar file:///Users/gangadharkadam/myapps/FullFlightData/src/main/resources/PhmAircraftType.csv
+Initializing Spark Context..
+Initializing Spark Hive Context..
+A318-112|2|AIRBUS|AIRBUS|2012-10-10T08:31:59|N|1
+ERJ195|2|EMBRAER|EMBRAER|2012-10-10T08:31:59|N|1
+B737-500|2|BOEING|BOEING|2012-10-10T08:31:59|N|1
+A320-211|2|AIRBUS|AIRBUS|2012-10-10T08:31:59|N|1
+B767-300|2|BOEING|BOEING|2012-10-10T08:31:59|N|1
+B747-400|4|BOEING|BOEING|2012-10-10T08:31:59|N|1
+CRJ|2|CANADAIR|CANADAIR|2012-10-10T08:31:59|N|1
+A319CJ|2|AIRBUS|AIRBUS|2012-10-10T08:31:59|N|1
+B777F|2|BOEING|BOEING|2012-10-10T08:31:59|N|1
+B767-TANKER|2|BOEING|BOEING|2012-10-10T08:31:59|N|1
+root
+ |-- AIRCRFT_TYP_CD: string (nullable = true)
+ |-- NO_OF_ENGS: integer (nullable = true)
+ |-- VLD_ARFRMR_NM: string (nullable = true)
+ |-- SRC_ARFRMR_NM: string (nullable = true)
+ |-- ARFRMR_VLDTN_DT: string (nullable = true)
+ |-- LGCL_DEL_IND: string (nullable = true)
+ |-- JOB_CONTROL_ID: integer (nullable = true)
+
+[A318-112,2,AIRBUS,AIRBUS,2012-10-10T08:31:59,N,1]
+[ERJ195,2,EMBRAER,EMBRAER,2012-10-10T08:31:59,N,1]
+[B737-500,2,BOEING,BOEING,2012-10-10T08:31:59,N,1]
+[A320-211,2,AIRBUS,AIRBUS,2012-10-10T08:31:59,N,1]
+[B767-300,2,BOEING,BOEING,2012-10-10T08:31:59,N,1]
+[B747-400,4,BOEING,BOEING,2012-10-10T08:31:59,N,1]
+[CRJ,2,CANADAIR,CANADAIR,2012-10-10T08:31:59,N,1]
+[A319CJ,2,AIRBUS,AIRBUS,2012-10-10T08:31:59,N,1]
+[B777F,2,BOEING,BOEING,2012-10-10T08:31:59,N,1]
+[B767-TANKER,2,BOEING,BOEING,2012-10-10T08:31:59,N,1]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
++------------------+-----------+
+|         tableName|isTemporary|
++------------------+-----------+
+|      aircrafttype|      false|
+|       engine_info|      false|
+|engine_information|      false|
+| engine_timeseries|      false|
+|         engine_ts|      false|
+|        engine_ts1|      false|
+|               ets|      false|
+|                gk|      false|
+|   timeseries_avro|      false|
++------------------+-----------+
+
++---------------+---------+-------+
+|       col_name|data_type|comment|
++---------------+---------+-------+
+| AIRCRFT_TYP_CD|   string|       |
+|     NO_OF_ENGS|      int|       |
+|  VLD_ARFRMR_NM|   string|       |
+|  SRC_ARFRMR_NM|   string|       |
+|ARFRMR_VLDTN_DT|   string|       |
+|   LGCL_DEL_IND|   string|       |
+| JOB_CONTROL_ID|      int|       |
++---------------+---------+-------+
+
++--------------+----------+-------------+-------------+-------------------+------------+--------------+
+|AIRCRFT_TYP_CD|NO_OF_ENGS|VLD_ARFRMR_NM|SRC_ARFRMR_NM|    ARFRMR_VLDTN_DT|LGCL_DEL_IND|JOB_CONTROL_ID|
++--------------+----------+-------------+-------------+-------------------+------------+--------------+
+|      A318-112|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A320-211|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|        A319CJ|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|    A300-600ER|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|        A319ER|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A319-115|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A321-213|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|    A300-600ST|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A320-100|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A380-900|         4|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A340-200|         4|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|     A300-600F|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A320-212|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A319-111|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A330-200|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A300-600|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A320-214|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A330-300|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A321-200|         2|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
+|      A340-311|         4|       AIRBUS|       AIRBUS|2012-10-10T08:31:59|           N|             1|
++--------------+----------+-------------+-------------+-------------------+------------+--------------+
+only showing top 20 rows
+
+Stopping the Spark Context...

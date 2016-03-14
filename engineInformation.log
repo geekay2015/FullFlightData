@@ -1,22 +1,21 @@
- spark-submit \
-→ --master local[*] \
-→ --class org.kadam.spark.GetEngineInformationCSVDataToHDFS \
-→ /Users/gangadharkadam/myapps/FullFlightData/target/scala-2.11/FullFlightData-assembly-1.0.jar \
-→ file:///Users/gangadharkadam/myapps/FullFlightData/src/main/resources/engineInformation.csv \
-→ /user/hive/warehouse/ffd_data/
-Initializing the Spark Context...
-[CES,B-6366,5499901,0,CES2800,20150507_163808,20150508_170244,ZSAM,UNKN,QAR]
-+-------------+-----------+--------------------+---------------------+-------------+-----------------+----------------------+--------------+---------------+---------+
-|CUSTOMER_CODE|TAIL_NUMBER|FLIGHT_RECORD_NUMBER|EXPORT_CONFIG_VERSION|FLIGHT_NUMBER|FLIGHT_DATE_EXACT|DECODE_GENERATION_TIME|AIRPORT_DEPART|AIRPORT_ARRIVAL|FILE_TYPE|
-+-------------+-----------+--------------------+---------------------+-------------+-----------------+----------------------+--------------+---------------+---------+
-|          CES|     B-6366|             5499901|                    0|      CES2800|  20150507_163808|       20150508_170244|          ZSAM|           UNKN|      QAR|
-+-------------+-----------+--------------------+---------------------+-------------+-----------------+----------------------+--------------+---------------+---------+
-
+spark-submit --master local[*] --class org.kadam.spark.FfdEngineInformationLoad /Users/gangadharkadam/myapps/FullFlightData/target/scala-2.11/FullFlightData-assembly-1.0.jar file:///Users/gangadharkadam/myapps/FullFlightData/src/main/resources/engineinformation.csv
+Initializing Spark Context..
+Initializing Spark Hive Context..
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-2167;FLIGHT_RECORD_NUMBER=257626;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=FM9174;FLIGHT_DATE_EXACT=2014-02-10 07:00:47;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZYHB;AIRPORT_ARRIVAL=ZSPD;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-5589;FLIGHT_RECORD_NUMBER=226627;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=CES5037;FLIGHT_DATE_EXACT=2014-03-10 01:10:24;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZUUU;AIRPORT_ARRIVAL=ZSPD;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-5448;FLIGHT_RECORD_NUMBER=227277;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=KN5806;FLIGHT_DATE_EXACT=2014-03-06 08:05:13;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZGHA;AIRPORT_ARRIVAL=UNKN;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-6891;FLIGHT_RECORD_NUMBER=260455;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=CES2892;FLIGHT_DATE_EXACT=2014-02-05 08:04:08;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=UNKN;AIRPORT_ARRIVAL=ZSNJ;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-1908;FLIGHT_RECORD_NUMBER=267937;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=CES5771;FLIGHT_DATE_EXACT=2014-01-31 11:36:17;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZPPP;AIRPORT_ARRIVAL=ZGGG;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-5142;FLIGHT_RECORD_NUMBER=210323;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=FM9321;FLIGHT_DATE_EXACT=2014-02-27 10:45:05;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZSSS;AIRPORT_ARRIVAL=ZGGG;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-1910;FLIGHT_RECORD_NUMBER=212427;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=CES2019;FLIGHT_DATE_EXACT=2014-02-17 01:09:05;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZHHH;AIRPORT_ARRIVAL=ZSPD;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-6370;FLIGHT_RECORD_NUMBER=277410;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=CES5484;FLIGHT_DATE_EXACT=2014-01-25 09:35:24;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZUCK;AIRPORT_ARRIVAL=UNKN;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-2356;FLIGHT_RECORD_NUMBER=246729;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=2169;FLIGHT_DATE_EXACT=2014-02-14 05:00:55;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=UNKN;AIRPORT_ARRIVAL=ZLXY;FILE_TYPE=QAR
+CUSTOMER_CODE=CES;TAIL_NUMBER=B-5267;FLIGHT_RECORD_NUMBER=231181;EXPORT_CONFIG_VERSION=0;FLIGHT_NUMBER=CES2584;FLIGHT_DATE_EXACT=2014-03-15 09:46:36;DECODE_GENERATION_TIME=2016-01-08 15:07:40;AIRPORT_DEPART=ZPPP;AIRPORT_ARRIVAL=ZYTL;FILE_TYPE=QAR
 root
  |-- CUSTOMER_CODE: string (nullable = true)
  |-- TAIL_NUMBER: string (nullable = true)
- |-- FLIGHT_RECORD_NUMBER: integer (nullable = true)
- |-- EXPORT_CONFIG_VERSION: integer (nullable = true)
+ |-- FLIGHT_RECORD_NUMBER: string (nullable = true)
+ |-- EXPORT_CONFIG_VERSION: string (nullable = true)
  |-- FLIGHT_NUMBER: string (nullable = true)
  |-- FLIGHT_DATE_EXACT: string (nullable = true)
  |-- DECODE_GENERATION_TIME: string (nullable = true)
@@ -24,8 +23,50 @@ root
  |-- AIRPORT_ARRIVAL: string (nullable = true)
  |-- FILE_TYPE: string (nullable = true)
 
-Initializing Spark Hive Context..
-Result of 'SELECT *':
-[CUSTOMER_CODE,TAIL_NUMBER,null,null,FLIGHT_NUMBER,FLIGHT_DATE_EXACT,DECODE_GENERATION_TIME,AIRPORT_DEPART,AIRPORT_ARRIVAL,FILE_TYPE]
-[CES,B-6366,5499901,0,CES2800,20150507_163808,20150508_170244,ZSAM,UNKN,QAR]
-Stopping Spark Context..
+[CES,B-2167,257626,0,FM9174,2014-02-10 07:00:47,2016-01-08 15:07:40,ZYHB,ZSPD,QAR]
+[CES,B-5589,226627,0,CES5037,2014-03-10 01:10:24,2016-01-08 15:07:40,ZUUU,ZSPD,QAR]
+[CES,B-5448,227277,0,KN5806,2014-03-06 08:05:13,2016-01-08 15:07:40,ZGHA,UNKN,QAR]
+[CES,B-6891,260455,0,CES2892,2014-02-05 08:04:08,2016-01-08 15:07:40,UNKN,ZSNJ,QAR]
+[CES,B-1908,267937,0,CES5771,2014-01-31 11:36:17,2016-01-08 15:07:40,ZPPP,ZGGG,QAR]
+[CES,B-5142,210323,0,FM9321,2014-02-27 10:45:05,2016-01-08 15:07:40,ZSSS,ZGGG,QAR]
+[CES,B-1910,212427,0,CES2019,2014-02-17 01:09:05,2016-01-08 15:07:40,ZHHH,ZSPD,QAR]
+[CES,B-6370,277410,0,CES5484,2014-01-25 09:35:24,2016-01-08 15:07:40,ZUCK,UNKN,QAR]
+[CES,B-2356,246729,0,2169,2014-02-14 05:00:55,2016-01-08 15:07:40,UNKN,ZLXY,QAR]
+[CES,B-5267,231181,0,CES2584,2014-03-15 09:46:36,2016-01-08 15:07:40,ZPPP,ZYTL,QAR]
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
++------------------+-----------+
+|         tableName|isTemporary|
++------------------+-----------+
+|      aircrafttype|      false|
+|       engine_info|      false|
+|engine_information|      false|
+| engine_timeseries|      false|
+|         engine_ts|      false|
+|        engine_ts1|      false|
+|               ets|      false|
+|                gk|      false|
+|   timeseries_avro|      false|
++------------------+-----------+
+
++--------------------+---------+-------+
+|            col_name|data_type|comment|
++--------------------+---------+-------+
+|       CUSTOMER_CODE|   string|       |
+|         TAIL_NUMBER|   string|       |
+|FLIGHT_RECORD_NUMBER|   string|       |
+|EXPORT_CONFIG_VER...|   string|       |
+|       FLIGHT_NUMBER|   string|       |
+|   FLIGHT_DATE_EXACT|   string|       |
+|DECODE_GENERATION...|   string|       |
+|      AIRPORT_DEPART|   string|       |
+|     AIRPORT_ARRIVAL|   string|       |
+|           FILE_TYPE|   string|       |
++--------------------+---------+-------+
+
++-------------+-----------+--------------------+---------------------+-------------+-------------------+----------------------+--------------+---------------+---------+
+|CUSTOMER_CODE|TAIL_NUMBER|FLIGHT_RECORD_NUMBER|EXPORT_CONFIG_VERSION|FLIGHT_NUMBER|  FLIGHT_DATE_EXACT|DECODE_GENERATION_TIME|AIRPORT_DEPART|AIRPORT_ARRIVAL|FILE_TYPE|
++-------------+-----------+--------------------+---------------------+-------------+-------------------+----------------------+--------------+---------------+---------+
+|          CES|     B-5183|              215148|                    0|       KN5658|2014-02-25 13:29:30|   2016-01-08 15:07:40|          UNKN|           UNKN|      QAR|
++-------------+-----------+--------------------+---------------------+-------------+-------------------+----------------------+--------------+---------------+---------+
