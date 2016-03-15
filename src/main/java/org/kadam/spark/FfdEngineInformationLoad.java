@@ -46,7 +46,7 @@ public class FfdEngineInformationLoad {
     public static void main( String[] args ) throws Exception
     {
         if (args.length < 1 ) {
-            System.out.println("Usage: GetAircraftTypeDataJava <InputFile> <outputFile>");
+            System.out.println("Usage: FfdEngineInformationLoad <InputFile>");
             System.exit(1);
 
         }
@@ -58,7 +58,7 @@ public class FfdEngineInformationLoad {
         // Define the Spark configuration
         SparkConf conf = new SparkConf()
                 .setAppName("FfdEngineInformationLoad")
-                .setMaster("local")
+                .setMaster("local[*]")
                 .set("spark.speculation", "false");
 
         // Define the Java Spark Context
@@ -82,8 +82,9 @@ public class FfdEngineInformationLoad {
 
         // The schema is encoded in a string
         String schemaString =
-                "CUSTOMER_CODE TAIL_NUMBER FLIGHT_RECORD_NUMBER EXPORT_CONFIG_VERSION FLIGHT_NUMBER " +
-                        "FLIGHT_DATE_EXACT DECODE_GENERATION_TIME AIRPORT_DEPART AIRPORT_ARRIVAL FILE_TYPE";
+                "FFD_ID AIRCRAFT_TYPE CUSTOMER_ICAO_CODE TAIL_NUMBER ADI_FLIGHT_RECORD_NUMBER EXPORT_CONFIG_VERSION FLIGHT_NUMBER " +
+                        "FLIGHT_DATE_EXACT DECODE_GENERATION_DATE AIRPORT_DEPART AIRPORT_DESTINATION ENGINE_POSITION FILE_TYPE";
+
 
         // Generate the schema based on the string of schema
         List<StructField> fields = new ArrayList<>();
@@ -106,7 +107,10 @@ public class FfdEngineInformationLoad {
                             columns[6].split("=", 2)[1],
                             columns[7].split("=", 2)[1],
                             columns[8].split("=", 2)[1],
-                            columns[9].split("=", 2)[1]
+                            columns[9].split("=", 2)[1],
+                            columns[10].split("=", 2)[1],
+                            columns[11].split("=", 2)[1],
+                            columns[12].split("=", 2)[1]
                     );
 
                 });
@@ -129,7 +133,7 @@ public class FfdEngineInformationLoad {
         sqlContext.sql("show tables").show();
         sqlContext.sql("describe engine_information").show();
 
-        sqlContext.sql("SELECT * FROM engine_information where flight_record_number = '215148'").show();
+        sqlContext.sql("SELECT * FROM engine_information where customer_icao_code = 'GLO'").show();
 
     }
 }
